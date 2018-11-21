@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HomeComponent from '../pages/home/'
-import MemberComponent from '../pages/member/'
-import ShopcarComponent from '../pages/shopcar/'
-import SearchComponent from '../pages/search/'
+import homeComponent from '../pages/home/'
+import memberComponent from '../pages/member/'
+import shopcarComponent from '../pages/shopcar/'
+import searchComponent from '../pages/search/'
+import newslistComponent from '../pages/newslist/'
+import newsinfoComponent from '../pages/newsinfo/'
 
 Vue.use(Router)
 
@@ -15,22 +17,27 @@ export default new Router({
     },
     {
       path: '/home',
-      component: HomeComponent
+      component: homeComponent
     },
     {
       path: '/member',
-      component: MemberComponent
+      component: memberComponent
     },
-
     {
       path: '/shopcar',
-      component: ShopcarComponent
+      component: shopcarComponent
     },
-
     {
       path: '/search',
-      component: SearchComponent
+      component: searchComponent
     },
+    {
+      path: '/home/newslist',
+      component: newslistComponent
+    }, {
+      path: '/home/newsinfo/:id',
+      component: newsinfoComponent
+    }
   ],
   linkActiveClass: 'mui-active'
 })
