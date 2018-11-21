@@ -2,7 +2,7 @@
   <div class="app-container">
 
 	<!-- 头部 -->
-    <mt-header fixed title="固定在顶部"></mt-header>
+    <mt-header fixed title="VUE - CMS"></mt-header>
 
 	<!-- 底部 -->
 	<nav class="mui-bar mui-bar-tab">

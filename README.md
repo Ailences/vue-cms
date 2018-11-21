@@ -86,3 +86,26 @@ npm run build --report
   transition: all 0.6s ease;
 }
 ```
+
+## 新闻资讯 页面 制作
+- 改造 新闻资讯 路由链接
+- 绘制界面， 使用 MUI 中的 media-list.html
+- 使用 vue-resource 获取数据渲染页面
+
+
+## 实现 新闻资讯列表点击跳转到新闻详情
+- 把列表中的每一项改造为 router-link,同时，在跳转的时候应该提供唯一的Id标识符
+- 创建新闻详情的组件页面  newsinfo.vue
+- 在 路由模块中，将新闻详情的 路由地址和组件页面对应起来
+
+## 实现新闻详情的页面布局和数据渲染
+
+## 单独封装一个 comment.vue 评论子组件
+- 先创建一个 单独的 comment.vue 组件模板
+- 在需要使用 comment 组件的 页面中，先手动导入 comment 组件
+ + `import comment from "../../components/comment/"`
+- 在父组件中，使用 `components` 属性，将刚才导入 comment 组件，注册为自己的子组件
+- 将注册子组件时候的，注册名称，以标签形式，在页面中引用即可
+
+
+## 获取所有的评论数据显示到页面中
