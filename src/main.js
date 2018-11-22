@@ -11,13 +11,14 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // 配置 vue-resource 的请求根域名
 Vue.http.options.root = 'http://www.lovegf.cn:8899/'
-
+// 全局设置 post 表单数据格式组织形式
+Vue.http.options.emulateJSON = true
 // 按需导入 mint-ui 组件 
 import {
   Header,
   Swipe,
   SwipeItem,
-  Button 
+  Button
 } from 'mint-ui'
 
 // 注册组件
