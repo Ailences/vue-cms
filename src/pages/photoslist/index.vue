@@ -15,9 +15,9 @@
     <!-- 图片列表区 -->
     <ul class="photo-list">
         <router-link to="" v-for="item in list" :key="item.id" tag="li">
-            <img src="item.img_url" alt="">
+            <img v-lazy="item.img_url">
             <div class="photo-info">
-                <h1 class="photo-title">{{ item.title }}</h1>
+                <h1 class="photo-title"> {{ item.title }} </h1>
                 <div class="photo-detail"> {{ item.zhaiyao }}</div>
             </div>
         </router-link>
@@ -75,5 +75,43 @@ export default {
 <style lang="less">
 .photoslist-contanier {
   touch-action: pan-y;
+  .photo-list {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    padding-bottom: 0;
+    li {
+      background-color: #ccc;
+      text-align: center;
+      margin-bottom: 10px;
+      box-shadow: 0 0 9px #999;
+      position: relative;
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+      img[lazy="loading"] {
+        width: 40px;
+        height: 300px;
+        margin: auto;
+      }
+
+      .photo-info {
+        color: white;
+        text-align: left;
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        max-height: 84px;
+        overflow: hidden;
+        .photo-title {
+          font-size: 14px;
+        }
+        .photo-detail {
+          font-size: 13px;
+        }
+      }
+    }
+  }
 }
 </style>
