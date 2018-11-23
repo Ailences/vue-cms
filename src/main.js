@@ -30,11 +30,12 @@ Vue.http.options.emulateJSON = true
 // Vue.use(Lazyload);
 
 import MintUI from 'mint-ui'
-
 Vue.use(MintUI)
-
 import 'mint-ui/lib/style.css'
 
+// 图片预览插件
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
 
 // 导入 mui 样式
 import './lib/mui/css/mui.css'
