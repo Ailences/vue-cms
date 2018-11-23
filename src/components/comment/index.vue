@@ -1,6 +1,7 @@
 <template>
   <div class="comment-container">
     <h2>发表评论</h2>
+    <hr>
     <textarea placeholder="请输入您要评论的内容!最多输入120字" maxlength="120" v-model="msg"></textarea>
     <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
     <div class="comment-list">

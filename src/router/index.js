@@ -8,6 +8,7 @@ import searchComponent from '../pages/search/'
 import newslistComponent from '../pages/newslist/'
 import newsinfoComponent from '../pages/newsinfo/'
 import photoslistCompoent from '../pages/photoslist/'
+import photoinfoComponent from '../pages/photoinfo/'
 
 Vue.use(Router)
 
@@ -41,6 +42,9 @@ export default new Router({
     }, {
       path:'/home/photoslist',
       component: photoslistCompoent
+    },{
+      path:'/home/photoinfo/:id',
+      component: photoinfoComponent
     }
   ],
   linkActiveClass: 'mui-active'
