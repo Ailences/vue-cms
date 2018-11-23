@@ -14,18 +14,26 @@ Vue.http.options.root = 'http://www.lovegf.cn:8899/'
 // 全局设置 post 表单数据格式组织形式
 Vue.http.options.emulateJSON = true
 // 按需导入 mint-ui 组件 
-import {
-  Header,
-  Swipe,
-  SwipeItem,
-  Button
-} from 'mint-ui'
+// import {
+//   Header,
+//   Swipe,
+//   SwipeItem,
+//   Button,
+//   Lazyload
+// } from 'mint-ui'
 
-// 注册组件
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name, Button)
+// // 注册组件
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name, Button)
+// Vue.use(Lazyload);
+
+import MintUI from 'mint-ui'
+
+Vue.use(MintUI)
+
+import 'mint-ui/lib/style.css'
 
 
 // 导入 mui 样式
