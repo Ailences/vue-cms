@@ -16,7 +16,7 @@
 
 <script>
 import { Toast } from "mint-ui";
-import comment from "../../components/comment/";
+import comment from "../../components/comment";
 
 export default {
   data() {
@@ -50,9 +50,9 @@ export default {
 
 <style lang="less">
 .newsinfo-container {
-  padding: 0 10px;
+  padding: 10px;
   p {
-    margin-bottom: 10px;
+    margin-bottom: 0 10px;
   }
   .title {
     font-size: 16px;
@@ -69,6 +69,12 @@ export default {
     .click {
       font-size: 13px;
       color: #226aff;
+    }
+  }
+  .content {
+    width: 100%;
+    img {
+      width: 100%;
     }
   }
 }
