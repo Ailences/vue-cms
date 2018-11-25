@@ -17,7 +17,7 @@
 		</router-link>
 		<router-link class="mui-tab-item-llb" to="/shopcar">
 			<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-				<span class="mui-badge">0</span>
+				<span class="mui-badge" id="badge">0</span>
 			</span>
 			<span class="mui-tab-label">购物车</span>
 		</router-link>
@@ -38,24 +38,24 @@
 <script>
 </script>
 
-<style lang="less">
+
+<style lang="less" >
 .app-container {
   padding: 40px 0 50px 0;
   overflow-x: hidden;
-
-  .v-enter {
+  > .v-enter {
     opacity: 0;
     transform: translateX(100%);
   }
 
-  .v-leave-to {
+  > .v-leave-to {
     opacity: 0;
     transform: translateX(-100%);
     position: absolute;
   }
 
-  .v-enter-active,
-  .v-leave-active {
+  > .v-enter-active,
+  > .v-leave-active {
     transition: all 0.6s ease;
   }
   // tabbar 点击切换

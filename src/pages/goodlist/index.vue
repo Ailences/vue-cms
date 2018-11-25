@@ -1,7 +1,9 @@
 <template>
     <div class="goodlist-container">
         <!-- 商品列表 -->
-        <div class="goods-item" v-for="item in goodsList" :key="item.id">
+        <!-- 方式一.a 标签形式实现 标签跳转 -->
+        <!-- <router-link class="goods-item" v-for="item in goodsList" :key="item.id" 
+        :to="'/home/goodsinfo/' + item.id" tag="div">
             <img :src="item.img_url">
             <h1 class="title"> {{ item.title }}</h1>
             <div class="info">
@@ -14,7 +16,23 @@
                     <span>剩 {{ item.stock_quantity}}件</span>
                 </p>
             </div>
-        </div>
+        </router-link> -->
+
+        <!-- 方式二. 使用 window.location.href 的形式， 编程式导航 -->
+        <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goToGoodsInfo(item.id)">
+            <img :src="item.img_url">
+            <h1 class="title"> {{ item.title }}</h1>
+            <div class="info">
+                <p class="price">
+                    <span class="now">￥{{ item.sell_price }}</span>
+                    <span class="old">￥{{ item.market_price }}</span>
+                </p>
+                <p class="sell">
+                    <span>热卖中</span>
+                    <span>剩 {{ item.stock_quantity}}件</span>
+                </p>
+            </div>
+        </div> 
 
         <!-- 加载更多 -->
         <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
@@ -35,16 +53,21 @@ export default {
   methods: {
     getGoodList() {
       // 获取商品列表
-      this.$http.get("api/getgoods?pageindex=" + this.pageindex).then(result => {
-        // console.log(result.body);
-        if (result.body.status === 0) {
-          this.goodsList = this.goodsList.concat(result.body.message);
-        }
-      });
+      this.$http
+        .get("api/getgoods?pageindex=" + this.pageindex)
+        .then(result => {
+          // console.log(result.body);
+          if (result.body.status === 0) {
+            this.goodsList = this.goodsList.concat(result.body.message);
+          }
+        });
     },
     getMore() {
       this.pageindex++;
       this.getGoodList();
+    },
+    goToGoodsInfo(id) {
+        this.$router.push("/home/goodsinfo/" + id)
     }
   }
 };
