@@ -1,13 +1,14 @@
 <template>
     <div class="home-container">
         <!-- 轮播图 -->
-        <mt-swipe class="binner-container" :auto="4000">
+        <!-- <mt-swipe class="binner-container" :auto="4000">
             <mt-swipe-item v-for="(item, index) in bannerList" :key="index">
                 <a :href="item.url">
                     <img :src="item.img">
                 </a>
             </mt-swipe-item>
-        </mt-swipe>
+        </mt-swipe> -->
+        <swiper :bannerList="bannerList" :isfull="true"></swiper>
 
         <!-- 网格导航 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -53,6 +54,9 @@
 
 <script>
 import { Toast } from "mint-ui";
+
+// 导入轮播图插件
+import swiper from "../../components/swiper";
 export default {
   data() {
     return {
@@ -73,31 +77,34 @@ export default {
         }
       });
     }
+  },
+  components: {
+    swiper
   }
 };
 </script>
 
 <style lang="less">
 .home-container {
-  .binner-container {
-    height: 200px;
-    .mint-swipe-item {
-      &:nth-child(1) {
-        background-color: cyan;
-      }
-      &:nth-child(2) {
-        background-color: lightgreen;
-      }
-      a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        img {
-          width: 100%;
-        }
-      }
-    }
-  }
+  // .binner-container {
+  //   height: 200px;
+  //   .mint-swipe-item {
+  //     &:nth-child(1) {
+  //       background-color: cyan;
+  //     }
+  //     &:nth-child(2) {
+  //       background-color: lightgreen;
+  //     }
+  //     a {
+  //       display: block;
+  //       width: 100%;
+  //       height: 100%;
+  //       img {
+  //         width: 100%;
+  //       }
+  //     }
+  //   }
+  // }
   .mui-grid-view {
     background-color: #fff;
     border: none;

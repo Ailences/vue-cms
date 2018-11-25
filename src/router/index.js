@@ -10,7 +10,9 @@ import newsinfoComponent from '../pages/newsinfo/'
 import photoslistCompoent from '../pages/photoslist/'
 import photoinfoComponent from '../pages/photoinfo/'
 import goodlistComponent from '../pages/goodlist/'
-
+import goodsinfoComponent from '../pages/goodsinfo/'
+import goodscommentComponent from "../pages/goodscomment/"
+import goodsdescComponent from "../pages/goodsdesc/"
 Vue.use(Router)
 
 export default new Router({
@@ -41,14 +43,25 @@ export default new Router({
       path: '/home/newsinfo/:id',
       component: newsinfoComponent
     }, {
-      path:'/home/photoslist',
+      path: '/home/photoslist',
       component: photoslistCompoent
-    },{
-      path:'/home/photoinfo/:id',
+    }, {
+      path: '/home/photoinfo/:id',
       component: photoinfoComponent
-    },{
+    }, {
       path: '/home/goodlist',
       component: goodlistComponent
+    }, {
+      path: '/home/goodsinfo/:id',
+      component: goodsinfoComponent
+    }, {
+      path: '/home/goodscomment/:id',
+      component: goodscommentComponent,
+      name: 'goodscomment'
+    }, {
+      path: '/home/goodsdesc/:id',
+      component: goodsdescComponent,
+      name: 'goodsdesc'
     }
   ],
   linkActiveClass: 'mui-active'
