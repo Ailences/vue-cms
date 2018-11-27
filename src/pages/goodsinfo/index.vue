@@ -5,7 +5,7 @@
       v-on:before-enter="beforeEnter"
       v-on:enter="enter"
       v-on:after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag"></div>
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
 
     <!-- 轮播图部分 -->
@@ -119,7 +119,15 @@ export default {
     },
     enter(el, done) {
       el.offsetWidth;
-      el.style.transform = "translate(90px, 212px)";
+      // 获取小球在页面中的位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      // 获取徽标在页面的位置
+      const badgePosition = document
+        .getElementById("badge")
+        .getBoundingClientRect();
+      const xDist = badgePosition.left - ballPosition.left;
+      const yDist = badgePosition.top - ballPosition.top;
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`;
       el.style.transition = "all 1s ease";
       done();
     },
