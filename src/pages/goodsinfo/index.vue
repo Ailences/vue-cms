@@ -1,10 +1,7 @@
 <template>
   <div class="goodsinfo-container">
     <!-- 小球 -->
-    <transition 
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:after-enter="afterEnter">
+    <transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:after-enter="afterEnter">
       <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
 
@@ -18,17 +15,20 @@
     <!-- 商品购买区域 -->
     <div class="card">
       <div class="buy">
-        <div class="title"> {{ goodsinfo.title }} </div>
+        <div class="title">{{ goodsinfo.title }}</div>
         <div class="content">
           <p class="price">
-            市场价: <del>￥{{ goodsinfo.market_price }}</del> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            销售价：<span class="now_price">￥{{ goodsinfo.sell_price }}</span>
+            市场价:
+            <del>￥{{ goodsinfo.market_price }}</del> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            销售价：
+            <span
+              class="now_price"
+            >￥{{ goodsinfo.sell_price }}</span>
           </p>
           <div class="shopping">
-            <p>购买数量:</p>
-            <button class="sub" value="">-</button>
-            <input class="count" type="text" value="1">
-            <button class="add" value="">+</button>
+            <p>购买数量:
+              <numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox>
+            </p>
           </div>
           <mt-button type="primary" size="small">立即购买</mt-button>
           <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -55,7 +55,11 @@
 </template>
 
 <script>
+// 导入轮播图组件
 import swiper from "../../components/swiper";
+
+// 导入数字选择框组件
+import numbox from "../../components/goods_numbox";
 
 export default {
   data() {
@@ -63,7 +67,8 @@ export default {
       id: this.$route.params.id,
       lunbotu: [],
       goodsinfo: {},
-      ballFlag: false
+      ballFlag: false,
+      selectedCount: 1
     };
   },
   created() {
@@ -128,15 +133,20 @@ export default {
       const xDist = badgePosition.left - ballPosition.left;
       const yDist = badgePosition.top - ballPosition.top;
       el.style.transform = `translate(${xDist}px, ${yDist}px)`;
-      el.style.transition = "all 1s ease";
+      el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
       done();
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
+    },
+    getSelectedCount(count) {
+      this.selectedCount = count;
+      console.log("父组件拿到的值:" + this.selectedCount);
     }
   },
   components: {
-    swiper
+    swiper,
+    numbox
   }
 };
 </script>
@@ -175,27 +185,14 @@ export default {
 
         .shopping {
           overflow: hidden;
-          height: 33px;
-          line-height: 33px;
+          height: 36px;
+          line-height: 35px;
           color: #8f8f94;
           margin-bottom: 10px;
 
           p {
             float: left;
             margin-right: 10px;
-          }
-
-          .sub,
-          .add,
-          .count {
-            float: left;
-            width: 40px;
-            height: 33px;
-          }
-
-          .count {
-            border-left: none;
-            border-right: none;
           }
         }
       }
