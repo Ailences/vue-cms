@@ -5,6 +5,101 @@ import moment from 'moment'
 
 Vue.config.productionTip = false
 
+// 注册vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+// 打开网页获取car中的数据
+var car = JSON.parse(localStorage.getItem('car') || '[]')
+// 创建store
+const store = new Vuex.Store({
+  state: {
+    car: car // 存储购物车中的数据
+  },
+  mutations: {
+    addToCar(state, goodsinfo) {
+      // 假设购物车中没有对应的商品
+      var flag = false
+      state.car.some(item => {
+        if (item.id == goodsinfo.id) {
+          item.count += parseInt(goodsinfo.count)
+          flag = true
+          return true
+        }
+      })
+
+      if (!flag) {
+        state.car.push(goodsinfo)
+      }
+
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+    updateGoodsInfo(state, goodsinfo) {
+      // 修改购物车的值
+      state.car.some(item => {
+        if (item.id == goodsinfo.id) {
+          item.count = parseInt(goodsinfo.count)
+          return true
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+    removeFromCar(state, id) {
+      state.car.some((item, i) => {
+        if (item.id == id) {
+          state.car.splice(i, 1)
+          return true
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+    updateSelected(state, goodsinfo) {
+      state.car.some(item => {
+        if (item.id == goodsinfo.id) {
+          item.selected = goodsinfo.selected
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.car))
+    }
+  },
+  getters: {
+    getAllCount(state) {
+      var c = 0;
+      state.car.forEach(item => {
+        c += item.count
+      })
+      return c
+    },
+    getGoodsCount(state) {
+      var o = {}
+      state.car.forEach(item => {
+        o[item.id] = item.count
+      })
+      return o
+    },
+    getGoodsSelected(state) {
+      var o = {}
+      state.car.forEach(item => {
+        o[item.id] = item.selected
+      })
+      return o
+    },
+    getGoods(state) {
+      var o = {
+        count: 0,
+        amount: 0
+      }
+      state.car.forEach(item => {
+        if (item.selected) {
+          o.count += item.count,
+            o.amount += item.price * item.count
+        }
+      })
+      return o
+    }
+  }
+})
+
 // 导入vue-resource
 import VueResource from 'vue-resource'
 // 注册vue-resource
@@ -51,5 +146,6 @@ import './css/common.less'
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(App),
+  store // 挂载 store 状态管理对象
 })

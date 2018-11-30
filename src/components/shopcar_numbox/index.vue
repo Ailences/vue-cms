@@ -5,7 +5,7 @@
       id="test"
       class="mui-input-numbox"
       type="number"
-      value="1"
+      :value="initcount"
       @change="countChanged"
       ref="numbox"
     >
@@ -24,19 +24,14 @@ export default {
   },
   methods: {
     countChanged() {
-      //   console.log(this.$refs.numbox.value);
-      this.$emit("getcount", parseInt(this.$refs.numbox.value));
+    //   console.log(this.$refs.numbox.value);
+      this.$store.commit("updateGoodsInfo", {
+        id: this.goodsid,
+        count: this.$refs.numbox.value
+      });
     }
   },
-  props: ["max"],
-  watch: {
-    max: function(newVal, oldVal) {
-      // 使用 JS API 设置 numbox 的最大值
-      mui(".mui-numbox")
-        .numbox()
-        .setOption("max", newVal);
-    }
-  }
+  props: ["initcount", "goodsid"]
 };
 </script>
 

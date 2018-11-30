@@ -118,6 +118,13 @@ export default {
     // 添加购物车小球
     addToShopCar() {
       this.ballFlag = !this.ballFlag;
+      var goodsinfo = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      };
+      this.$store.commit("addToCar", goodsinfo);
     },
     beforeEnter(el) {
       el.style.transform = "translate(0, 0)";
@@ -141,7 +148,7 @@ export default {
     },
     getSelectedCount(count) {
       this.selectedCount = count;
-      console.log("父组件拿到的值:" + this.selectedCount);
+      // console.log("父组件拿到的值:" + this.selectedCount);
     }
   },
   components: {
